@@ -1,0 +1,204 @@
+
+@charset "UTF-8";
+
+/*공통으로 사용하는 스타일 시트를 만든다
+
+블로그의 메인 페이지, 글 쓰기 페이지, 글 보기 페이지, 로그인 페이지 등 
+어떤 페이지를 열어도 무조건 똑같이 나타나야 하는 스타일을 만든다
+*/
+
+/*새로고침을 해도 계속 화면이 안바뀌면 컨트롤+쉬프트+R을 입력해봐라
+버퍼에 있는 내용을 지워서 css파일을 불러올수 있게끔 한다*/
+
+
+
+:root{
+	/*root는 <html>태그 내에 있는 모든 부분을 가리킨다
+	해당 태그내에 있는 모든 부분에 스타일 값을 적용시킨다
+	
+	이건 mystyle에도 끌어다가 쓸수 있다
+	*/
+    --color-primary: #3b6ff2;
+    /*옆의 #3b6ff2; 부분이 primary라는 변수에 저장된다*/
+    --color-primary-dark: #2952c8;
+    --color-text: #222;
+    --color-text-light: #777;
+    --color-border: #e2e2e2;
+    --color-bg: #fafafa;
+    --header-height: 64px;
+/*이렇게 색상을 지정해서 변수에 저장해두고 필요할때 불러올수 있다
+무슨 DB의 주석마냥 선언해서 어색하다.*/
+}
+
+
+
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/*왼쪽의 기본 여백 제거해서 글자를 맨 왼쪽에 일렬로 세운다
+width 값에 테두리선, 여백 값을 포함 시킨다고 한다*/
+a {
+	text-decoration: none;
+	/*a태그의 밑줄을 없앤다*/
+	color: #333;
+}
+
+ul, ol {
+	list-style: none;
+	/*이걸 하면 목록 옆에있는 1.2.3. 같은게 없어진다*/
+}
+
+body {
+	/*color: #333;*/
+	color:var(--color-text);
+	/*위쪽의 :root부분을 찾아가서 --color-text부분을 찾아가서
+	색상을 #222을 대입한다*/
+	background-color: var(--color-bg);
+	line-height:1.5;
+	/*줄의 간격. 1.5배의 비율로 줄간격을 지정 (줄의 높이를 지정해서 간격 조정)*/
+}
+
+.site-header {
+	height: var(--header-height);
+	/*아래쪽 테두리선 그림*/
+	background:#fff;
+	/*배경색
+	header는 기본적으로 가로는 100%를 차지하기 때문에 가로로 길게 파란색이 그려진다*/
+}
+/*앞서 index에서 선언했던 클래스 이름을 호출시에는 .으로 한다
+(index.jsp에서 header를 site-header로 변수 지정했는데 그것을 불러오는 것이다)*/
+
+
+.header-inline {
+	
+	
+	width:1080px;
+	
+	height:100%;
+	margin:0 auto;
+	padding:0 20px;
+	display:flex;
+	/*디스플레이 플렉스는 배치를 세로 <> 가로 이런식으로 
+	전환시키는 방법인데, 내가 적용시키려는 리스트의 부모쪽에다가 이것을 적용시켜준다
+	이것을 지금 진행하면 세로로 배치된 글자 3개가(글목록로그인회원가입) 가로로 3줄로 늘어서고
+	h1,ol,a태그 그룹이 가로로 늘어서게 된다
+	
+	*/
+	
+	align-items : center;
+	/*요소들을 가운데로 배치
+	글목록, 인기글, 글쓰기(li태그)가 화면 한중간에 배치된다*/
+	
+	justify-content:space-between;
+	/*그룹을 양쪽으로 정렬
+	MY BLOG란 글자는 왼쪽에, 로그인 회원가입(a태그)은 오른쪽으로 배치된다
+	즉 쫙 벌려져서 양쪽에 배치된다*/
+	
+}
+
+.gnb ul {
+	/*하위 선택자 : 부모서(gnb)부터 내려가서 아래 자식(ul)에게 스타일을 적용시키는 방법
+	display : flex;를 통해 글목록 인기글 글쓰기 부분이 세로에서 가로로 출력되게 된다*/
+	display : flex;
+	gap:30px;
+	/*글자사이 간격을 준다*/
+	margin-top:18px;
+}
+
+.gnb ul li a, .member-menu a{
+	/*.gnb a 같이 중간에 경로를 몇개 안적어도 적용되긴 한다
+	
+	중간에 ,를 넣어서 여러 구역을 동시 적용 시킬수도 있다*/
+	font-weight:bold;
+	/*글목록 인기글 글쓰기 부분의 글자가 진하게 나온다
+	이게 글자 무게냐..*/
+	display:inline-block;
+	/*인라인요소 태그에 블럭 css를 적용
+	(인라인 : 한줄로 나란히 여기서는 블럭을 가로로 한줄로 나란히 늘어놓는단 의미인듯)
+	이런 행동을 하는 이유가
+	마우스를 hover했을때 나오는 블럭을 좀더 크게하고 싶어서
+	패딩을 주기위해 먼저 인라인 블럭을 선언한다고 한다*/
+	padding:8px 16px;
+	
+	/*display:inline;
+	블럭속성을 인라인속성으로 바꿔라
+	
+	
+	display:block;
+	인라인속성을 블럭속성으로 바꿔라*/
+	
+}
+
+.gnb a:hover, .member-menu a:hover{
+	/*hover : 마우스가 a태그 위에 올라갔을때 액션을 취함
+	글목록 인기글 글쓰기 부분과 로그안 회원가입 부분에
+	마우스를 올리면 그 부분만 파란색으로 바뀐다
+	
+	여기도 마찬가지로 ,로 동시 적용 시킬수 있으나 호버는 각각 지정해줘야 하는걸 알자
+	
+	호버는 : 기준으로 띄어쓰기하면 오류난단걸 알자..*/
+	color:#f00;
+	background:#fafafa;
+	/*백그라운드를 호버로 지정해주면 컬러 부분은 글자색 백그라운드부분은 글자를 감싼 박스색으로
+	색깔이 지정되어서 색상이 변환 된다*/
+	
+}
+
+/*footer 공통 스타일*/
+
+.site-footer{
+	background:#fff; border:1px solid var(--color-border); color:var(--color-text);
+	font-size:14px; margin-top:60px; padding:30px 0; text-align:center
+/*footer전체에 적용하는 스타일
+뒤쪽 배경을 흰색으로 하고 회색선으로 감싼다. 
+글자크기와 위쪽 바깥여백 안쪽여백도 적용하고 글자를 중간정렬 한다*/
+}
+
+.footer-sub{
+	margin-top:6px;
+	/*Sevlet,&nbsp;&nbsp;JSP,Oracle로 만든 개인 블로그 프로젝트 라는 글자 위에
+	약간의 공백을 주어서 글자끼리 거리를 벌리기위해서 하는 작업
+	*/
+}
+
+/*---공통 버튼 css---*/
+
+.btn{
+	display:inline-block;
+	padding:10px 20px;
+	border-radius:6px;
+	font-size:14px;
+	border:none;
+	cursor:pointer;
+	background-color:#fff;
+	/*마우스를 버튼에 올렸을때 손가락 모양 생성*/
+}
+
+.btn-primary{
+	background-color:var(--color-primary);
+	color:#fff;
+	
+}
+
+.btn-primary:hover{
+	background-color:var(--color-primary-dark);
+	color:#fff;
+	/*글쓰기라는 버튼에 마우스를 올렸을때 백그라운드를 파랑으로 보이도록 한다*/
+}
+
+.btn-outline{
+	background-color: #fff;
+	border:1px solid var(--color-border);
+	color:var(--color-text);
+}
+
+img{
+	max-width:100%;
+	/*첨부파일로 이미지를 불러왔을때 이미지가 너무 크면 그 크기를 지정된 박스 크기에 맞춰서 줄여준다*/
+}
+
+

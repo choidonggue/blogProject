@@ -1,0 +1,1093 @@
+
+
+@charset "UTF-8";
+
+/* ---------------비쥬얼 영역(헤더 영역)---------------------*/
+/*common.css로 잡은 기본 틀 위에, 
+특정 페이지 각각을 내 입맛에 맞게 꾸미는 스타일을 적는다.*/
+
+.visual {
+	
+	width:100%;
+	height:400px;
+	overflow : hidden;
+	/*높이 400px를 넘어가는 이미지를 일부 잘라서 표현한다*/
+	/*background:url(../images/visual.jpg) no-repeat center center;*/
+	/*배경이미지 삽입, 반복안함, x,y축 : 가운데 
+	이미지를 배경으로써 집어넣고 이미지가 계속 연속해서 가로로 출력되는것을 막기 위해서 no-repeat를 사용한뒤
+	x축과 y축을 각각 center로 지정을 한다*/
+	/*background-size:cover;*/	
+	/*그룹영역 크기에 맞게 꽉차게 보이게 한다
+	 그림이 다소 잘려서 미리 지정했던 센터 중간부분을 확장시킨것 처럼 출력이 된다*/
+	 text-align:center;
+	 /*blog라는 글자를 화면 중간에 배치하기 위해 이것을 선언*/
+}
+
+.visual-img {
+	width:100%;
+	height:100%;
+	/*너비 100%로 만들어서 이미지가 가로로 꽉차게 표현된다*/
+	
+}
+
+
+.visual-txt{
+	display:inline-block;
+	/*밑에 패딩을 주려고 하는데 인라인요소면 패딩이 먹히지 않으므로 인라인 속성을 유지하면서
+	블록요소도 주려고 이걸 적는다*/
+	font-size : 42px;
+	font-weight:bold;
+	color:#fff;
+	/*배경그림위에 글자 크기를 42, 굵게 , 흰색, 중간 정렬을 다 적용시킨다*/
+	padding-top:120px;
+	/*출력되는 글자를 배경이미지 기준 약간 밑으로 내리기 위해서 패딩을 준다*/
+	text-shadow:1px 1px 1px rgba(0,0,0,0.7);
+	/*글자 아래에 그림자를 넣어서 글자를 입체적으로 보이게끔 한다
+	그림자 효과 : x(1px),y(1px),거리(1px),색상(rgb:0,0,0),투명도(a:0.7 => 70%)
+	글자 기준 오른쪽 구석 가로 세로 1px만큼 범위를 1px만큼 바깥으로 뻗어나가는 그림자를 넣는다*/
+}
+
+/*-------------------컨텐츠 영역(최신글, 인기글 영역)-----------------*/
+.content{
+	
+	width:1080px;
+	margin:40px auto;
+	padding : 0 20px;
+	/*최신글위에 20px정도의 여백을 준다*/
+	display:flex;
+	/*최신글 옆에 인기글을 가로로 배치하기 위해서 이것을 지정*/
+	gap:30px;
+	/*최신글과 인기글 그림 사이 영역을 벌린다*/
+	
+}
+
+.content-box{
+	flex:1;
+	/*두개의 그룹의 남는 공간을 1:1로 나눠라
+	최신글과 인기글 파트 그러니까, 본문 파트의 비율을 세로로 나눠서 2:1로 하던 3:1로 하던
+	지정 가능*/
+	background:#fff;
+	/*게시글 한개한개마다 흰색 배경을 지정*/
+	border:1px solid var(--color-border);
+	/*게시글을 회색선으로 감싼다*/
+	border-radius:8px;
+	/*게시글 회색석 모서리를 8px 만큼 둥글게 한다*/
+	padding : 20px;
+}
+
+
+.section-title{
+	/*최신글이란 글자 설정*/
+	font-size:18px;
+	font-weight:bold;
+	margin-bottom:16px;
+	padding-bottom:10px;
+	border-bottom:2px solid var(--color-primary);
+}
+
+
+/*최신글 인기글 카드 목록*/
+
+.post-card-list{
+	/*게시판 3개를 다 묶어서 처리하는 css*/
+	display:flex;
+	/*게시판을 가로로 보이게 설정*/
+	flex-direction:column;
+	/*위의 flex부분을 가로 > 세로로 보이도록 설정
+	가로로 보이게 하고 싶으면 row를 적자*/
+	gap:14px;
+	/*위아래 간격을 조금 띄운다*/
+}
+
+.post-card{
+	/*게시판 각각의 틀에 적용하는 css*/
+	display:flex;
+	/*게시판을 가로로 보이게 함*/
+	align-items:center;
+	/*세로 축을 중심으로해서 가운데서 보이도록 하라
+
+ justify-content: center의 세로 버전이다. 기준이 되는것만 중간에 냅두고 나머지는 위아래로 뻗친다*/
+	gap:12px;
+}
+
+.post-thumb{
+	/*게시판의 그림마다 적용하는 css*/
+	width:64px;
+	height:64px;
+	object-fit:cover;
+	/*정해진 박스크기에 꽉 채운다
+	저 가로,세로크기 64px에 맞도록 그림을 꽉채워서 표현한다*/
+	border-radius:6px;
+	/*그림도 둥글게 표현한다*/
+	flex-shrink:0;
+		/*부모 공간이 부족해져도 자식도 줄어들지 않는다
+
+	위에서 그림의 width,height를 비율로 안하고 px로 지정했기때문에
+
+	이런 보험을 들어둔다
+
+shrink는 줄어들다란 뜻이 있으며 1로하면 부모와 100퍼 비율로 맞춰서(1:1로)같이 줄어들고 0이면 자식은 아예 줄어들지 않는다*/
+
+	background-color:var(--color-border);
+	
+}
+
+/*--- list.jsp css ---*/
+
+.list-wrap {
+	
+	width:1080px;
+	margin:40px auto;
+	padding:0 20px;
+	/*아이디 입력창 한중간으로 옮기기
+	메인문 전체에 적용된다*/
+	
+}
+
+.list-top{
+	/*글쓰기와 검색 파트 한줄을 조정하는 파트*/
+	
+	display:flex;
+	/*저스티파이, 어라인 아이템즈 같이 가로, 세로 구역 조정같은것을 할떄 쓰인다
+	고정되어있는 것들을 유연하게 풀어준다고 생각하자
+	이것은 부모에게 설정하면 자식에게 적용되는 방식이라고 한다*/
+	justify-content:space-between;
+	/*저스티파이는 가로 기준 정렬 방식인데
+	스페이스 비트윈을 쓰면 양쪽으로 쫙 펼쳐서 정렬한다
+	그래서 글쓰기 버튼이 오른쪽끝으로 붙게된다*/
+	align-items:center;
+	/*어라인 아이템즈는 세로 기준으로 정렬을 하는건데
+	세로 가운데로 정렬하겠다는 의미다. 
+	아마도 글쓰기 버튼같은것이 특정 구역 기준으로 세로 중간에 고정될것이다*/
+	margin-bottom:24px;
+	
+}
+
+.search-form{
+	display:flex;
+	gap:8px;
+	/*글쓰기 검색 같은 제출하는 파트에 적용하는 스타일(폼파트)
+	이걸 하면 선택, 검색 같은 박스들이 양옆으로 벌어진다
+	특별한 설정이 없으면 gap은 가로로만 적용된다*/
+}
+
+.search-select{
+	padding:8px 12px;
+	border-radius:6px;
+	font-size:14px;
+	background-color:#fff;
+	color:var(--color-text);
+	border:1px solid var(--color-border);
+	/*선택박스만 꾸민다. 
+	안쪽여백을 줘서 박스 크기를 키우고 둥글게 만든 후
+	글자 크기를 지정후에 박스색상은 흰색으로 지정하고 
+	글자색과 테두리 색깔을 지정했다
+	*/
+	
+}
+
+.search-input{
+	width:220px;
+	padding:8px 12px;
+	border:1px solid var(--color-border);
+	border-radius:6px;
+	font-size:14px;
+	/*검색어를 입력하세요. 라는 칸을 장식한다*/
+}
+
+
+/*---게시글 카드 그리드---*/
+
+.board-grid {
+	display:grid;
+	/*자식들을 행과 열로 정리해서 배치
+	즉 바둑판으로 배치하라는 말이다
+	
+	grid:격자무늬,바둑판 눈금*/
+	grid-template-columns:repeat(3,1fr);
+	/*3개의 열을 만들어라. fr은 fraction(비율)인데 3개의 컬럼을 똑같이 만들어라
+	repeat(3,1fr)은 1fr비율의 것을 3번 반복하라는 의미다*/
+	gap:20px;
+	/*바둑판으로 된것의 간격을 준다
+	위에서 display-grid를 했기떄문에 flex처럼 gap적용이 가능해진다*/
+}
+
+.board-card{
+	/*그림이 있는 게시물 파트에 적용하는 클래스*/
+	background:#fff;
+	/*게시물의 배경을 흰색으로하면 게시물이 더 돋보일것이다*/
+	border:1px solid var(--color-border);
+	/*게시물에 회색 테두리같은것을 지정*/
+	border-radius:8px;
+	overflow:hidden;
+	/*위에서 래디어스를 지정해서 그림이 들어갈 박스 테두리를 둥글게 지정했는데
+	그림이 직사각형이면 테두리를 뚫고 나올것이다. 이것을 방지하기 위해서
+	그림이 박스를 넘어가게되면 넘어간 부분을 숨겨서 표현해라. 이런 뜻이다*/
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0); 
+	transition:box-shadow 0.15s ease;
+	/*애니메이션을 실행해서 박스에 그림자를 주겠다
+	0.15초동안 실행한다
+	
+	이것을 하면 사진에 마우스를 올리면 
+	박스밑에 그림자가 0.15초동안 생긴다 호버 비슷한것
+	
+	이것은 단독으로 쓰일수 없고 아래쪽에서
+	마우스 호버를 따로 설정해줘야한다
+	
+	transition: 변화과정
+	ease: 완화하다,유연함,편안한
+	
+	위의 영어뜻을 섞으면
+	그림자의 변화과정(transition)을 보여줄건데 0.15초동안 가속과 감속이 들어간
+	가장 자연스럽고 편안한(ease) 속도를 보여달라*/
+	
+}
+
+
+.board-card:hover{
+	box-shadow:0 4px 12px rgba(0,0,0,0.08);
+	/*마우스 올렸을때 박스 음영을 보이도록 하는 것
+	위의 transition때문에 이것을 설정했다*/
+}
+
+
+.board-thumb {
+	/*이미지 썸네일(게시판을 누르기전에 그림을 작게나마 보여주는 것)의 설정*/
+	width:100%;
+	/*그림이 아무리 커도 박스 크기에 맞춰서 줄어든다(비율은 가로 100%라서 사실상 전체크기가 줄어들음)*/
+	height:160px;
+	object-fit:cover;
+	/*그림을 영역에 딱 맞게 집어넣는 방법*/
+	background:var(--color-border);
+	
+}
+
+.board-info {
+	padding:14px;
+	
+}
+
+.board-title{
+	/*게시글의 소제목을 설정하는 파트*/
+	font-size:15px;
+	font-weight:600;
+	/*글자 두꼐를 수치로써 표현할수 있다. px를 쓰지 않는다*/
+	margin-bottom:8px;
+	white-space:nowrap;
+	/*글자가 길어도 줄 바꿈 안함*/
+	text-overflow:ellipsis;
+	/*글자가 영역을 침범시 ...으로 표시*/
+}
+
+.board-meta{
+	font-size:13px;
+	color:var(--color-text-light);
+	margin-bottom:4px;
+	/*작성자 이영희, 조회수 같은 글자를
+	다소 작게 회색으로써 표현하는 방법
+	아래쪽 여백도 4px만큼 줬다*/
+	
+}
+
+
+.board-stat{
+	font-size:12px;
+	color:var(--color-text-light);
+	/*이건 뭐지*/
+}
+
+
+
+/*--- 페이지네이션(목록처리)
+(이전 1,2,3,4,5,6 다음 => 같은 하이퍼링크 목록을 띄운다) ---*/
+
+.pagination{
+	
+	/*저 선택 목록박스를 화면 중간에 배치하고 약간의 간격들을 주는 과정*/
+	
+	display:flex;
+	justify-content:center;
+	gap:8px;
+	margin-bottom:32px;
+	margin-top:32px
+	
+}
+
+.page-num{
+	
+	/*1,2,3,4,5 같은 글자를 조정하는 방법*/
+	display:inline-flex;
+	/*1,2,3같은 목록은 글자(문장)형식이라 인라인 형식이다. 이것도 flex를 걸수 있다*/
+	align-items:center;
+	justify-content:center;
+	/*세로와 중간 정렬*/
+	width:32px;
+	height:32px;
+	/*글자를 적는 박스의 높이와 너비 지정*/
+	border:1px solid var(--color-border);
+	border-radius:6px;
+	font-size:13px;
+	color:var(--color-text);
+	/*위는 알거라고 본다*/
+}
+
+.page-num.active{
+	/*page-num밑에 있는 active라는 하위 선택자를 쓸거라면
+	.을 붙여서 연결해준다*/
+	
+	background:var(--color-primary);
+	color:#fff;
+	border-color:var(--color-primary);
+	/*이것을 하면 현재 선택되어있는 페이지에 파란색 배경이 들어올것이다*/
+	
+}
+
+.page-nav{
+	/*이전, 다음 같은 버튼을 꾸미는 방법
+	사실상 딱 한개빼고 위의 page-num과 같다*/
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	width:32px;
+	height:32px;
+	padding:0 50px;
+	border:1px solid var(--color-border);
+	border-radius:6px;
+	font-size:13px;
+	color:var(--color-text);
+	
+	
+}
+
+
+.page-nav.disabled{
+	
+	color:var(--color-text-light);
+	background-color:var(--color-bg);
+	pointer-events:none;
+	/*1페이지라면 이전버튼 클릭을 못하게 만든다*/
+	
+}
+
+
+
+/*--- view.jsp css  ---*/
+
+
+.view-wrap {
+	
+	/*샘플 제목입니다 부분을 고침*/
+	
+	max-width: 760px;
+	/*박스 크기를 최대 가로 폭을 760으로 지정*/
+	margin:40px auto;
+	padding:0 20px;
+	
+	
+}
+
+.view-header{
+	
+	/*샘플 제목입니다 부분에 밑부분에만 회색선을 생성하고 여백을 집어넣는다*/
+	border-bottom:1px solid var(--color-border);
+	padding-bottom:16px;
+	margin-bottom:20px;
+	
+	
+}
+
+.view-title{
+	
+	/*샘플 제목입니다 글자 부분의 설정*/
+	font-size:24px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+
+
+.view-meta{
+	
+	/*작성자 홍길동이란 글자를 바꾼다*/
+	
+	font-size:13px
+	
+	
+}
+
+.view-img img{
+	
+	/*뷰 폴더의 사진의 스타일 적용 방법*/
+	width:100%;
+	max-height:400px;
+	object-fit:cover;
+	/*박스 크기에 맞춰서 사진을 꽉차게 하라*/
+	border-radius:8px;
+	
+}
+
+
+.view-content{
+	
+	/*사진 밑의 글자를 입력하는 부분*/
+	font-size:15px;
+	line-height:1.8;
+	color:var(--color-text);
+	min-height:120px;
+	margin-bottom:24px;
+	white-space:pre-line;
+	/*줄바꿈(\n)을 그대로 화면에 반영
+	게시글에서 정해진 박스크기를 넘어가거나 사용자가 엔터를 입력시
+	엔터가 적용되도록 하는 방법이다
+	이렇게 하는 이유는 문장이 일렬로 계속 박스를 넘어가서 입력된다
+	
+	미리 서식을 지정한(Pre-formatted) 줄바꿈(Line)
+	*/
+}
+
+.view-actions{
+	
+	/*수정 삭제 목록 등이 있는 박스를 가로,세로 중간 배치 하는 방법
+	
+	박스 위아래로 회색선도 긋는다*/
+	
+	display:flex;
+	justify-content:space-between;
+	align-items: center;
+	padding:16px 0;
+	border-top:1px solid var(--color-border);
+	border-bottom:1px solid var(--color-border);
+	margin-bottom:30px;
+	
+	
+}
+
+.view-actions-right .btn-blue {
+	
+	/*목록 부분의 박스를 파란색으로 보이게끔 한다*/
+	
+    background-color: #007bff; /* 파란색 배경 */
+    color: #ffffff;            /* 글자색을 흰색으로 변경 */
+    border-color: #007bff;     /* 테두리도 파란색으로 통일 */
+}
+
+.like-btn{
+	/*좋은가요 라는 부분을 흐리게 표현*/
+	color:var(--color-text-light);
+}
+
+.like-btn.liked{
+	/*좋은가요 버튼을 눌르면 색깔이 연한 핑크색으로 바뀌도록 한다
+	(당연히 view.jsp에 해당 클래스가 없다 버튼을 누르는순간 liked라는 클래스가 생성되기에)*/
+	background:#ffeef0;
+	border-color:#ffee81;
+	color:#ff3b5c;
+	
+}
+
+.view-actions-right{
+	/*수정 삭제 목록 부분의 뒷부분을 연한 분홍색으로 표현*/
+	display:flex;
+	gap:8px;
+	background:#ffeef0;
+	border-color:#ffee81;
+	color:#ff3b5c;
+}
+
+
+
+
+
+
+.reply-title {
+	/*댓글 이라는 부분을 굵게 표현*/
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+ 
+.reply-list {
+	/*댓글을 위에서 아래로 입력이 쌓여가도록 설정*/
+    display: flex;
+    flex-direction: column;
+    /*이 부분이 위에서 아래로 값이 쌓이도록 하는 방법이다*/
+    gap: 14px;
+    margin-bottom: 20px;
+}
+ 
+.reply-item {
+	/*댓글 상자 부분을 둥글게 하거나 테두리를 만드는 과정*/
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+ 
+.reply-info {
+	/*홍길동, 날짜 부분을 가로로 배치하고 간격 설정*/
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+ 
+.reply-writer {
+	/*홍길동 부분의 글자 크기와 굵기 설정*/
+    font-size: 13px;
+    font-weight: 600;
+}
+ 
+.reply-date {
+	/*날짜 부분의 글자크기와 색깔 지정*/
+    font-size: 12px;
+    color: var(--color-text-light);
+}
+ 
+.reply-content {
+	/*좋은정보 감사합니다같은 댓글의 내용이 표현*/
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+ 
+.reply-btns {
+	/*수정 삭제 부분의 버튼을 가로 배치하고 간격을 설정*/
+    display: flex;
+    gap: 10px;
+}
+ 
+.reply-btns button {
+	/*수정과 삭제 버튼을 눌렀을때 반응을 하는 것*/
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: var(--color-text-light);
+    cursor: pointer;
+    /*마우스를 버튼에 올렸을떄 손가락 모양으로 마우스를 바꿔준다*/
+    padding: 0;
+}
+ 
+.reply-btns button:hover {
+	/*버튼에 커서를 올렷을떄 버튼의 색깔을 바꾼다*/
+    color: var(--color-primary);
+}
+ 
+.reply-form {
+	/*댓글을 입력하라 라는 댓글 입력 박스를 가로로 배치*/
+    display: flex;
+    gap: 8px;
+}
+ 
+.reply-input {
+	/*댓글 입력칸을 여백이나 글자크기 둥글게 등을 지정*/
+    flex: 1;
+    /*댓글을 입력하다보면 정해진 박스의 크기를 넘어갈수 있는데
+    미리 정해둔 박스 범위내라면 입력박스의 크기가 유연하게 계속 늘어날수 있게
+    해주는 성질*/
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+
+
+/*--- write css ---*/
+
+.write-wrap {
+	
+	max-width:700px;
+	margin:40px auto;
+	padding:0 20px;
+	
+}
+
+.write-page-title {
+	
+	font-size:22px;
+	font-weight:700;
+	margin-bottom:24px;
+	
+}
+
+.form-row{
+	
+	margin-bottom:20px;
+	
+	
+}
+
+.form-row label {
+	
+	display:block;
+	/*label은 인라인요소다*/
+	font-size:14px;
+	font-weight:600;
+	margin-bottom:8px;
+	
+}
+
+.form-optional {
+	
+	font-weight : 400;
+	color : var(--color-text-light);
+	font-size:12px;
+	
+}
+
+
+
+.form-input, .form-textarea {
+	
+	width:100%;
+	padding:10px 12px;
+	border:1px solid var(--color-border);
+	border-radius:6px;
+	font-size:14px;
+	
+	
+}
+
+.form-textarea{
+	resize:vertical;
+	/*글을 적는 칸을 마우스로 상하로 크기 조절할 수가 있는데 이것이 리사이즈 버티컬이다
+	당연히 좌우는 안된다*/
+	line-height:1.6;
+	/*문장 줄 사이 간격*/
+}
+
+
+
+/* --- 이미지 업로드 영역 --- */
+
+.image-upload-box{
+	display:flex;
+	align-items:center;
+	gap:16px;
+}
+
+
+.img-preview{
+	width:120px;
+	height:90px;
+	object-fit:cover;
+	border-radius:6px;
+	border:1px solid var(--color-border);
+	background:var(--color-bg);
+	
+}
+
+
+.image-upload-btns{
+	
+	display:flex;
+	flex-direction:column;
+	gap:8px;
+	
+}
+
+
+
+.file-input{
+	
+	display:none;
+	/*기본파일 선택버튼 숨김
+	label을 버튼처럼 사용
+	선택버튼이 사라졌다기보다는 숨겨진거라고 한다*/
+	
+}
+
+
+.file-label{
+	
+	text-align:center;
+	cursor:pointer;
+	
+}
+
+
+/*---작성자 표시 (읽기 전용, 세션값)---*/
+
+.write-author{
+	
+	font-size:14px;
+	color:var(--color-text-light);
+	padding:8px 0;
+	
+}
+
+
+/* 회원 가입 파트의 css (join.jsp)*/
+
+
+.join-wrap {
+    max-width: 480px;
+    /*굳이 max로 하는 이유는 480px보다 더 작은 화면에서는 크기를 줄어들게 만들기 위함이라 한다
+    보통 스마트폰을 생각해서 하는 과정이라고 한다. 
+    480px이상인 화면에서는 480px그대로 표현한다*/
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.join-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.form-row {
+    margin-bottom: 18px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 아이디 입력창 + 중복확인 버튼을 한 줄에 배치 */
+.id-check-group {
+    display: flex;
+    gap: 8px;
+}
+
+.id-check-group .form-input {
+	/*아이디 입력창을 최대 너비(width)내에서 알아서 남는 공간을 인풋 공간으로 쓰게끔 한다*/
+    flex: 1;
+}
+
+.id-check-btn {
+	/*부모 박스 크기가 작아져도 자식 박스 크기는 고정 시키고
+	글이 길어져도 줄 안바꾸도록 한다. 굳이 할 필요있는지 모르겠다 단순히 버튼인데*/
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* 아이디 중복확인 / 비밀번호 확인 결과 메시지 */
+.field-msg {
+    font-size: 12px;
+    margin-top: 6px;
+    min-height: 14px; 
+    /* 메시지 없을 때도 레이아웃이 흔들리지 않도록 
+    이것을 하는 이유는 중복확인 글자가 아래에 출력될 공간을 미리 만들어둔거다.
+    안그러면 억지로 공간을 만들어서 아래의 박스를 밀어버리고 공간을 만드니
+    멀미날거다*/
+}
+
+.join-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 26px;
+}
+
+.join-btns .btn {
+    flex: 1;
+    text-align: center;
+}
+
+
+/* --- 로그인 css (login.jsp) --- */
+
+.login-wrap {
+    max-width: 380px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.login-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.form-row {
+    margin-bottom: 16px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    /*박스사이징이란 이상한 짓을 하는 이유는
+    혹여 가로,세로 너비를 벗어나게 마진같은게 잡혀버리면 
+    박스가 정해진 크기를 벗어나게 만들어져서 레이아웃이 깨진다고한다
+    저것을 선언하면 바깥여백이 안쪽여백으로써 전환되어서 적용되어서
+    박스크기가 유지된다고 한다*/
+}
+
+.login-submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.login-footer-link {
+	/*아직 계정이 없으신가요? 라는 작은 글자를 밑에 띄우는것을 footer라고 처리했네.*/
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-top: 18px;
+}
+
+.login-footer-link a {
+	/*회원가입 버튼의 색깔 처리*/
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* ---   popular css (인기글)-- */
+
+.popular-wrap {
+	/*인기글 파트의 박스 크기 결정*/
+    max-width: 1080px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.popular-page-title {
+	/*인기글 제목*/
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.popular-sub {
+	/*인기글 아래의 작은 회색 글씨*/
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 24px;
+}
+
+.popular-grid {
+	/*사진들을 바둑판 배열 형식으로 보이기 위함*/
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.popular-card {
+	/*게시글 하나하나를 처리하는 css*/
+    position: relative;
+    /*이것을 하면 이것을 위치이동을 해도 다른 요소는 밀려나지 않고 얘만 이동한다*/
+    background-color: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    /*넘치는 부분은 자른다*/
+}
+
+.popular-card a {
+    display: block;
+    /*블록화한다*/
+}
+
+.popular-thumb {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    /*사진을 꽉 채운다*/
+    background-color: var(--color-border);
+}
+
+.popular-info {
+    padding: 14px;
+}
+
+.popular-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*텍스트가 일정 범위를 넘어가면 ...으로 표현*/
+}
+
+.popular-meta {
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+/* 순위 배지: 카드 왼쪽 위에 겹쳐서 표시 */
+.rank-badge {
+	/*그림 위에 1등 2등같은 스티커를 붙인다*/
+    
+    position: absolute;
+    /*위에서 relative를 선언 시에 부모박스내에서 위치를 지정해서
+    특정 지점에 해당 스티커의 위치를 고정시킬 수 있다
+    이렇게 하면 썸네일 왼쪽위쪽 구석에 1이란 스티커를 붙일수 있다*/
+    top: 10px;
+    left: 10px;
+    /*이렇게 해야지 왼쪽 위에 고정된다*/
+    width: 28px;
+    height: 28px;
+    /*배지 박스의 크기를 지정*/
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    /*글자를 그림위에 둥둥 띄우도록 하기위해서 이런 행동을 한다
+    z축 기준으로 그림보다 위에 있게하기위해서 1을 지정*/
+}
+
+/* 1~3등은 색을 다르게 줘서 눈에 띄게 */
+.rank-1 { background-color: #ffb703; }
+.rank-2 { background-color: #adb5bd; }
+.rank-3 { background-color: #cd853f; }
+
+
+
+
+
+/*  ---   mypage css (마이페이지)---*/
+
+.mypage-wrap {
+	/*전체 박스 크기 지정*/
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.mypage-page-title {
+	/*좋아요 부분*/
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.mypage-sub {
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 24px;
+}
+
+/* ---------- 탭 메뉴 ---------- */
+.mypage-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 20px;
+}
+
+.mypage-tab-btn {
+    padding: 10px 18px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    /*이것을 진행 시 마치 min-height처럼 최소 높이 범위를 늘려주는데
+    아래쪽에 보이지않는 투명선을 만들어서 밑줄이 생기게되면 박스가 아래로 밀리지않고
+    밑줄을 생성하게 된다*/
+    font-size: 14px;
+    color: var(--color-text-light);
+    cursor: pointer;
+    /*아마도 박스에 마우스를 올리면 벌어지는 현상 같다*/
+}
+
+.mypage-tab-btn.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* ---------- 탭 패널 (마이페이지의 탭부분. 마우스로 누르면 정해진 박스부분만큼 창이 전환된다)---------- */
+.mypage-panel {
+    display: none;
+    /*다른 탭을 눌렀을때 기존 내용은 화면에서 아예 지워버리는 내용
+    내용이 지워져서 빈자리를 만들어야 다른 내용이 나온다*/
+/*기본적으로 모든 마이페이지 화면을 지워둔다고 한다*/
+}
+
+.mypage-panel.active {
+    display: block;
+    /*오직 active클래스가 붙은 화면만 눈에 보이게 한다(불이 켜진다)*/
+}
+
+.mypage-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* 내 글 / 좋아요한 글: 썸네일 있는 아이템 */
+.mypage-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.mypage-thumb {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.mypage-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.mypage-item-meta {
+    font-size: 12px;
+    color: var(--color-text-light);
+}
+
+/* 내 댓글: 텍스트만 있는 아이템 */
+.mypage-reply-item {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+
+.mypage-reply-content {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+
+
+.login-error-msg {
+	/*로그인 실패시 나오는 비동기 메시지*/
+	padding:20px 0;
+	/*비동기로 글자를 출력하기위해서 내부 여백을 다소 준다
+	원래 if문으로 인해 이 여백이 안보여야하는데.. 계속 있다*/
+	color:#00f;
+	/*파란글자를 출력*/
+	text-align:center;
+}
+
+
+
+
+
+
+
+

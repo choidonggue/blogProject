@@ -1,0 +1,95 @@
+!SESSION 2026-10-07 09:12:50.537 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.4
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -data C:\jspAi2Blog2\blogProject2
+
+!ENTRY ch.qos.logback.classic 1 0 2026-10-07 09:12:57.445
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2026-10-07 09:12:59.383
+!MESSAGE Logback config file: C:\jspAi2Blog2\blogProject2\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.1.20240411-1122.xml
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-10-07 09:13:08.028
+!MESSAGE [Info] Starting language server with binary lsp agent.
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-10-07 09:13:08.029
+!MESSAGE [Info] Found native binary in fragment bundle: com.microsoft.copilot.eclipse.core.agent.win32
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-10-07 09:13:08.075
+!MESSAGE [Info] Binary agent started successfully.
+
+!ENTRY org.eclipse.egit.ui 2 0 2026-10-07 09:13:08.359
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\JSL인재개발원'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:12.955
+!MESSAGE [Info]	[ripgrep] Using tmpFolder for ripgrep: C:\Users\JSL인재개발원\.cache\pkg\72dc6f288b8f13e22da7572a55f576ac335b8402e617b8aaf91f8dbf72adf1a0
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:12.957
+!MESSAGE [Info]	[lsp] GitHub Copilot Language Server 1.527.0 initialized
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.091
+!MESSAGE [Info]	[ripgrep] Resolved ripgrep path: C:\Users\JSL인재개발원\.cache\pkg\72dc6f288b8f13e22da7572a55f576ac335b8402e617b8aaf91f8dbf72adf1a0\rg.exe
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.092
+!MESSAGE [Info]	[ripgrep] Set GITHUB_COPILOT_RIPGREP_PATH_OVERRIDE=C:\Users\JSL인재개발원\.cache\pkg\72dc6f288b8f13e22da7572a55f576ac335b8402e617b8aaf91f8dbf72adf1a0\rg.exe
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.150
+!MESSAGE [Info]	[UndiciFetcher] HTTP settings changed; resetting Undici dispatchers. {
+  proxy: 'none',
+  noProxyCount: 0,
+  proxyStrictSSL: true,
+  hasProxyAuthorization: false,
+  hasProxyKerberosServicePrincipal: false
+}
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.151
+!MESSAGE [Info]	[certificates] Removed 8 expired certificates
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.153
+!MESSAGE [Info]	[UndiciFetcher] Root certificate set changed; resetting Undici dispatchers. { certificateCount: 177 }
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.158
+!MESSAGE [Info]	[AuthManager] resolvePersistedSession: no active session editorId=eclipse pickerEnabled=false optedOut=true autoAdoptAttempted=false
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.159
+!MESSAGE [Info]	[AuthManager] resolvePersistedSession: no active session editorId=eclipse pickerEnabled=false optedOut=true autoAdoptAttempted=false
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.161
+!MESSAGE [Info]	[AuthManager] resolveSession: persisted store returned no session
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.162
+!MESSAGE [Info]	[AuthManager] resolveSession: persisted store returned no session
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.163
+!MESSAGE [Info]	[AuthManager] resolvePersistedSession: no active session editorId=eclipse pickerEnabled=false optedOut=true autoAdoptAttempted=false
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.165
+!MESSAGE [Info]	[GithubAvailableEmbeddingTypes] Could not find any available embedding types. Error: noSession
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.166
+!MESSAGE [Info]	[AuthManager] resolveSession: persisted store returned no session
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.167
+!MESSAGE [Info]	[AuthManager] resolvePersistedSession: no active session editorId=eclipse pickerEnabled=false optedOut=true autoAdoptAttempted=false
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.169
+!MESSAGE [Info]	[AuthManager] resolveSession: persisted store returned no session
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.170
+!MESSAGE [Info]	[AuthManager] checkAndUpdateStatus: no session found, priming token
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.171
+!MESSAGE [Info]	[AuthManager] resolvePersistedSession: no active session editorId=eclipse pickerEnabled=false optedOut=true autoAdoptAttempted=false
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.173
+!MESSAGE [Info]	[AuthManager] resolveSession: persisted store returned no session
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-10-07 09:13:13.367
+!MESSAGE [Info]	[default] Policy watcher started for GitHub Copilot Plugin
