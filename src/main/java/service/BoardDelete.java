@@ -17,7 +17,7 @@ import model.MemberDTO;
 public class BoardDelete implements Command {
 
 	private static final String UPLOAD_DIR = "C:/upload";
-	//이미지를 내컴에서 지우기위해서 지정하는 주소
+	//이미지를 내컴에서 지우기위해서 지정하는 주소 그렇다
 	
 	@Override
 	public boolean doCommand(HttpServletRequest request, HttpServletResponse response)
